@@ -20,6 +20,7 @@ die()
 
 # Ensure the volumes paths are present
 [ -f "/usr/src/code/Gemfile" ] || die "Source code Gemfile not found! (in /usr/src/code)"
+[ -f "/usr/src/code/main.rb" ] || die "Source code main.rb not found! (in /usr/src/code)"
 
 # Copy the source code into the container from the linked volume
 cp -r /usr/src/code/* /usr/src/app/src/main/resources/
