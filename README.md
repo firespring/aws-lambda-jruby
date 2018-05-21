@@ -28,7 +28,8 @@ end
 # rubocop:enable Style/GlobalVars
 
 # Only run the main function if the file has been called directly
-main if $PROGRAM_NAME == __FILE__```
+main if $PROGRAM_NAME == __FILE__
+```
 
 * Add any other ruby code you need
   * The directory structure might look something like this:
