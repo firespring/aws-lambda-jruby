@@ -20,7 +20,7 @@ Dir["#{BASE_DIRECTORY}/lib/**/*.rb"].sort.each { |file| require file.sub("#{BASE
 
 # rubocop:disable Style/GlobalVars
 def main
-  Sbf::Lambda.new($lambda_arg).perform
+  MyRubyLambda::Lambda.new($lambda_arg).perform
 rescue => e
   puts "Lambda execution failed: Error #{e.inspect}\n#{e.backtrace.join("\n")}"
   raise
