@@ -8,6 +8,27 @@ This is a Dockerized gradle project for packaging a Ruby project into a zip file
   * The project directory should contain a `Gemfile` for any external libraries you are using
     * This file may be blank
   * The project directory should contain a `main.rb` ruby file which will be the entrypoint for the lambda
+    * The main file may look something like this:
+```# Consider the directory this file is currently located in as the base directory for the project
+BASE_DIRECTORY = File.realpath(File.dirname(__FILE__)).to_s
+
+# Add current directory to the path
+$LOAD_PATH.unshift BASE_DIRECTORY
+
+# Require everything in lib
+Dir["#{BASE_DIRECTORY}/lib/**/*.rb"].sort.each { |file| require file.sub("#{BASE_DIRECTORY}/", '').chomp('.rb') }
+
+# rubocop:disable Style/GlobalVars
+def main
+  Sbf::Lambda.new($lambda_arg).perform
+rescue => e
+  puts "Lambda execution failed: Error #{e.inspect}\n#{e.backtrace.join("\n")}"
+  raise
+end
+# rubocop:enable Style/GlobalVars
+
+# Only run the main function if the file has been called directly
+main if $PROGRAM_NAME == __FILE__```
 
 * Add any other ruby code you need
   * The directory structure might look something like this:
