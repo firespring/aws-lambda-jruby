@@ -6,6 +6,7 @@ This is a Dockerized gradle project for packaging a Ruby project into a zip file
 ### Building
 * Create a ruby project in a directory `my_ruby_lambda`
   * The project directory should contain a `Gemfile` for any external libraries you are using
+    * This file may be blank
   * The project directory should contain a `main.rb` ruby file which will be the entrypoint for the lambda
 
 * Add any other ruby code you need
@@ -36,4 +37,5 @@ This is a Dockerized gradle project for packaging a Ruby project into a zip file
   * Save your changes
 
 * You can now run your lambda
-
+  * **NOTE: The first time your lambda runs it may take up to 60 seconds to execute**
+  * (subsequent executions should be sufficiently fast)
