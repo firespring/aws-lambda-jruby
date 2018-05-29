@@ -10,7 +10,7 @@ RUN add-apt-repository "deb http://http.debian.net/debian jessie-backports main"
     apt-get install -t jessie-backports openjdk-8-jdk curl tar -y
 
 # Add JRuby
-ARG JRUBY_VERSION=9.1.2.0
+ARG JRUBY_VERSION=9.2.0.0
 RUN mkdir /opt/jruby \
   && curl -fSL https://s3.amazonaws.com/jruby.org/downloads/${JRUBY_VERSION}/jruby-bin-${JRUBY_VERSION}.tar.gz -o /tmp/jruby.tar.gz \
   && tar -zx --strip-components=1 -f /tmp/jruby.tar.gz -C /opt/jruby \
