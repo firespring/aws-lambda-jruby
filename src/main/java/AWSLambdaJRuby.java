@@ -35,6 +35,7 @@ public class AWSLambdaJRuby {
     container.setCurrentDirectory("/var/task");
 
     // Setup Bulder configs
+    context.getLogger().log("Setting up ruby environment...");
     container.runScriptlet("ENV['BUNDLE_GEMFILE'] = \"/var/task/Gemfile\"");
     container.runScriptlet("ENV['GEM_HOME'] = \"/var/task/vendor\"");
     container.runScriptlet("ENV['GEM_PATH'] = \"/var/task/vendor\"");
@@ -45,7 +46,8 @@ public class AWSLambdaJRuby {
     container.runScriptlet("Bundler.require");
 
     // Run main.rb
-    Object result = container.runScriptlet(PathType.CLASSPATH,rubyFileName);
+    context.getLogger().log("Executing lambda...");
+    Object result = container.runScriptlet(PathType.CLASSPATH, rubyFileName);
 
     return result == null ? null : result.toString();
   }
