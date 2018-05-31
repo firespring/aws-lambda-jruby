@@ -24,10 +24,8 @@ WORKDIR /usr/src/app
 
 # Add JRuby to the project
 RUN cp /opt/jruby/lib/jruby.jar /usr/src/app/lib/jruby.jar \
-    && find /usr/src/app/src/main/resources/ \
     && cp -r /opt/jruby/lib/ruby/stdlib /usr/src/app/src/main/resources/ \
-    && touch /usr/src/app/src/main/resources/stdlib/.jrubydir \
-    && find /usr/src/app/src/main/resources/
+    && touch /usr/src/app/src/main/resources/stdlib/.jrubydir
 
 # Add bundler to the stdlib dir in order to make it available to Java/JRuby
 RUN jruby -S gem install bundle --no-ri --no-rdoc \
